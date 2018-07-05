@@ -9,6 +9,7 @@ namespace Superhero.Controllers
     public class SuperheroController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
+        private object id;
 
         // GET: Superhero 
         public ActionResult Index()
@@ -63,8 +64,16 @@ namespace Superhero.Controllers
 
         public ActionResult Details()
         {
-            ApplicationDbContext context = new ApplicationDbContext();
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Superheroes hero = db.Superheroes.Find(id);
+            if (hero == null)
+            {
+                return HttpNotFound();
+            }
+            return View(hero);
         }
     }
 }
