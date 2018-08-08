@@ -51,7 +51,7 @@ namespace Superhero.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Title,ReleaseDate,Genre,Price")] Superheroes hero)
+        public ActionResult Edit([Bind(Include = "Id,Name,AlterEgo,PrimarySuperheroAbility,SecondarySuperheroAbility,Catchphrase")] Superheroes hero)
         {
             if (ModelState.IsValid)
             {
@@ -63,6 +63,20 @@ namespace Superhero.Controllers
         }
 
         public ActionResult Details()
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Superheroes hero = db.Superheroes.Find(id);
+            if (hero == null)
+            {
+                return HttpNotFound();
+            }
+            return View(hero);
+        }
+
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
