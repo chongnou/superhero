@@ -226,6 +226,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Image\lightning.jpg" />
     <Content Include="Image\Thor.jpg" />
+    <Content Include="Image\thor2.jpeg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
